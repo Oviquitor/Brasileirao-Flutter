@@ -2,28 +2,25 @@ import 'package:flutter/material.dart';
 import 'package:teste/contacts.dart';
 import 'package:teste/dashboard.dart';
 import 'package:teste/events.dart';
-import 'package:teste/home.dart';
-import 'package:teste/menu.dart';
 import 'package:teste/my_drawer_header.dart';
 import 'package:teste/notes.dart';
 import 'package:teste/privacy_policy.dart';
 import 'package:teste/send_feedback.dart';
 import 'package:teste/settings.dart';
 
-class Menu3 extends StatefulWidget {
+class Menu extends StatefulWidget {
   @override
-  Menu3State createState() => Menu3State();
+  _MenuState createState() => _MenuState();
 }
 
-class Menu3State extends State<Menu3> {
-  var currentPage = DrawerSections.home;
-  final Menu menu = new Menu();
+class _MenuState extends State<Menu> {
+  var currentPage = DrawerSections.dashboard;
 
   @override
   Widget build(BuildContext context) {
     var container;
-    if (currentPage == DrawerSections.home) {
-      container = homePage();
+    if (currentPage == DrawerSections.dashboard) {
+      container = DashboardPage();
     } else if (currentPage == DrawerSections.contacts) {
       container = ContactsPage();
     } else if (currentPage == DrawerSections.events) {
@@ -39,11 +36,10 @@ class Menu3State extends State<Menu3> {
     } else if (currentPage == DrawerSections.send_feedback) {
       container = SendFeedbackPage();
     }
-    double displayWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
-        centerTitle: true,
-        title: Text("Menu"),
+        backgroundColor: Colors.green[700],
+        title: Text("Rapid Tech"),
       ),
       body: container,
       drawer: Drawer(
@@ -61,7 +57,6 @@ class Menu3State extends State<Menu3> {
     );
   }
 
-//metodo para construir a lista do menu lateral
   Widget MyDrawerList() {
     return Container(
       padding: const EdgeInsets.only(top: 10),
@@ -69,7 +64,7 @@ class Menu3State extends State<Menu3> {
         // shows the list of menu drawer
         children: [
           menuItem(1, "Dashboard", Icons.dashboard_outlined,
-              currentPage == DrawerSections.home ? true : false),
+              currentPage == DrawerSections.dashboard ? true : false),
           menuItem(2, "Contacts", Icons.people_alt_outlined,
               currentPage == DrawerSections.contacts ? true : false),
           menuItem(3, "Events", Icons.event,
@@ -91,7 +86,6 @@ class Menu3State extends State<Menu3> {
     );
   }
 
-//navegação entre paginas
   Widget menuItem(int id, String title, IconData icon, bool selected) {
     return Material(
       color: selected ? Colors.grey[300] : Colors.transparent,
@@ -100,7 +94,7 @@ class Menu3State extends State<Menu3> {
           Navigator.pop(context);
           setState(() {
             if (id == 1) {
-              currentPage = DrawerSections.home;
+              currentPage = DrawerSections.dashboard;
             } else if (id == 2) {
               currentPage = DrawerSections.contacts;
             } else if (id == 3) {
@@ -148,7 +142,7 @@ class Menu3State extends State<Menu3> {
 }
 
 enum DrawerSections {
-  home,
+  dashboard,
   contacts,
   events,
   notes,

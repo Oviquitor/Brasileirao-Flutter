@@ -1,17 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:teste/contacts.dart';
-import 'package:teste/dashboard.dart';
-import 'package:teste/events.dart';
 import 'package:teste/inicio.dart';
 import 'package:teste/introducao.dart';
-import 'package:flutter/material.dart';
-import 'package:teste/my_drawer_header.dart';
-import 'package:teste/notes.dart';
-import 'package:teste/privacy_policy.dart';
-import 'package:teste/send_feedback.dart';
-import 'package:teste/settings.dart';
+import 'package:teste/menu.dart';
 
 void main() {
   runApp(const MyApp());
@@ -20,11 +12,10 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Funcao(),
+      home: HomePage(),
     );
   }
 }
@@ -164,7 +155,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 //}
                 Navigator.of(context).pushReplacement(
                   MaterialPageRoute(
-                    builder: (context) => introducao(),
+                    builder: (context) => Menu3(),
                   ),
                 );
               },
@@ -181,148 +172,4 @@ class _LoginScreenState extends State<LoginScreen> {
       ),
     );
   }
-}
-
-class Funcao extends StatefulWidget {
-  @override
-  _FuncaoState createState() => _FuncaoState();
-}
-
-class _FuncaoState extends State<Funcao> {
-  var currentPage = DrawerSections.dashboard;
-
-  @override
-  Widget build(BuildContext context) {
-    var container;
-    if (currentPage == DrawerSections.dashboard) {
-      container = DashboardPage();
-    } else if (currentPage == DrawerSections.contacts) {
-      container = ContactsPage();
-    } else if (currentPage == DrawerSections.events) {
-      container = EventsPage();
-    } else if (currentPage == DrawerSections.notes) {
-      container = NotesPage();
-    } else if (currentPage == DrawerSections.settings) {
-      container = SettingsPage();
-    } else if (currentPage == DrawerSections.notifications) {
-      container = NotesPage();
-    } else if (currentPage == DrawerSections.privacy_policy) {
-      container = PrivacyPolicyPage();
-    } else if (currentPage == DrawerSections.send_feedback) {
-      container = SendFeedbackPage();
-    }
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.green[700],
-        title: Text("Rapid Tech"),
-      ),
-      body: container,
-      drawer: Drawer(
-        child: SingleChildScrollView(
-          child: Container(
-            child: Column(
-              children: [
-                MyHeaderDrawer(),
-                MyDrawerList(),
-              ],
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget MyDrawerList() {
-    return Container(
-      padding: const EdgeInsets.only(top: 10),
-      child: Column(
-        // shows the list of menu drawer
-        children: [
-          menuItem(1, "Dashboard", Icons.dashboard_outlined,
-              currentPage == DrawerSections.dashboard ? true : false),
-          menuItem(2, "Contacts", Icons.people_alt_outlined,
-              currentPage == DrawerSections.contacts ? true : false),
-          menuItem(3, "Events", Icons.event,
-              currentPage == DrawerSections.events ? true : false),
-          menuItem(4, "Notes", Icons.notes,
-              currentPage == DrawerSections.notes ? true : false),
-          Divider(),
-          menuItem(5, "Settings", Icons.settings_outlined,
-              currentPage == DrawerSections.settings ? true : false),
-          menuItem(6, "Notifications", Icons.notifications_outlined,
-              currentPage == DrawerSections.notifications ? true : false),
-          Divider(),
-          menuItem(7, "Privacy policy", Icons.privacy_tip_outlined,
-              currentPage == DrawerSections.privacy_policy ? true : false),
-          menuItem(8, "Send feedback", Icons.feedback_outlined,
-              currentPage == DrawerSections.send_feedback ? true : false),
-        ],
-      ),
-    );
-  }
-
-  Widget menuItem(int id, String title, IconData icon, bool selected) {
-    return Material(
-      color: selected ? Colors.grey[300] : Colors.transparent,
-      child: InkWell(
-        onTap: () {
-          Navigator.pop(context);
-          setState(() {
-            if (id == 1) {
-              currentPage = DrawerSections.dashboard;
-            } else if (id == 2) {
-              currentPage = DrawerSections.contacts;
-            } else if (id == 3) {
-              currentPage = DrawerSections.events;
-            } else if (id == 4) {
-              currentPage = DrawerSections.notes;
-            } else if (id == 5) {
-              currentPage = DrawerSections.settings;
-            } else if (id == 6) {
-              currentPage = DrawerSections.notifications;
-            } else if (id == 7) {
-              currentPage = DrawerSections.privacy_policy;
-            } else if (id == 8) {
-              currentPage = DrawerSections.send_feedback;
-            }
-          });
-        },
-        child: Padding(
-          padding: EdgeInsets.all(15.0),
-          child: Row(
-            children: [
-              Expanded(
-                child: Icon(
-                  icon,
-                  size: 20,
-                  color: Color.fromARGB(255, 255, 0, 0),
-                ),
-              ),
-              Expanded(
-                flex: 3,
-                child: Text(
-                  title,
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 16,
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-enum DrawerSections {
-  dashboard,
-  contacts,
-  events,
-  notes,
-  settings,
-  notifications,
-  privacy_policy,
-  send_feedback,
 }
