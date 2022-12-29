@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:teste/contacts.dart';
-import 'package:teste/dashboard.dart';
-import 'package:teste/events.dart';
-import 'package:teste/menu.dart';
-import 'package:teste/my_drawer_header.dart';
-import 'package:teste/notes.dart';
-import 'package:teste/privacy_policy.dart';
-import 'package:teste/send_feedback.dart';
-import 'package:teste/settings.dart';
+import 'package:teste/teste/contacts.dart';
+import 'package:teste/teste/dashboard.dart';
+import 'package:teste/teste/events.dart';
+import 'package:teste/teste/menu.dart';
+import 'package:teste/teste/my_drawer_header.dart';
+import 'package:teste/teste/notes.dart';
+import 'package:teste/teste/privacy_policy.dart';
+import 'package:teste/teste/send_feedback.dart';
+import 'package:teste/teste/settings.dart';
 
 class homePage extends StatefulWidget {
   const homePage({super.key});

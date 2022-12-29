@@ -1,26 +1,29 @@
 import 'package:flutter/material.dart';
-import 'package:teste/contacts.dart';
-import 'package:teste/dashboard.dart';
-import 'package:teste/events.dart';
-import 'package:teste/my_drawer_header.dart';
-import 'package:teste/notes.dart';
-import 'package:teste/privacy_policy.dart';
-import 'package:teste/send_feedback.dart';
-import 'package:teste/settings.dart';
+import 'package:teste/teste/contacts.dart';
+import 'package:teste/teste/dashboard.dart';
+import 'package:teste/teste/events.dart';
+import 'package:teste/teste/home.dart';
+import 'package:teste/teste/menu.dart';
+import 'package:teste/teste/my_drawer_header.dart';
+import 'package:teste/teste/notes.dart';
+import 'package:teste/teste/privacy_policy.dart';
+import 'package:teste/teste/send_feedback.dart';
+import 'package:teste/teste/settings.dart';
 
-class Menu extends StatefulWidget {
+class Menu3 extends StatefulWidget {
   @override
-  _MenuState createState() => _MenuState();
+  Menu3State createState() => Menu3State();
 }
 
-class _MenuState extends State<Menu> {
-  var currentPage = DrawerSections.dashboard;
+class Menu3State extends State<Menu3> {
+  var currentPage = DrawerSections.home;
+  final Menu menu = new Menu();
 
   @override
   Widget build(BuildContext context) {
     var container;
-    if (currentPage == DrawerSections.dashboard) {
-      container = DashboardPage();
+    if (currentPage == DrawerSections.home) {
+      container = homePage();
     } else if (currentPage == DrawerSections.contacts) {
       container = ContactsPage();
     } else if (currentPage == DrawerSections.events) {
@@ -36,10 +39,11 @@ class _MenuState extends State<Menu> {
     } else if (currentPage == DrawerSections.send_feedback) {
       container = SendFeedbackPage();
     }
+    double displayWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.green[700],
-        title: Text("Rapid Tech"),
+        centerTitle: true,
+        title: Text("Menu"),
       ),
       body: container,
       drawer: Drawer(
@@ -57,6 +61,7 @@ class _MenuState extends State<Menu> {
     );
   }
 
+//metodo para construir a lista do menu lateral
   Widget MyDrawerList() {
     return Container(
       padding: const EdgeInsets.only(top: 10),
@@ -64,7 +69,7 @@ class _MenuState extends State<Menu> {
         // shows the list of menu drawer
         children: [
           menuItem(1, "Dashboard", Icons.dashboard_outlined,
-              currentPage == DrawerSections.dashboard ? true : false),
+              currentPage == DrawerSections.home ? true : false),
           menuItem(2, "Contacts", Icons.people_alt_outlined,
               currentPage == DrawerSections.contacts ? true : false),
           menuItem(3, "Events", Icons.event,
@@ -86,6 +91,7 @@ class _MenuState extends State<Menu> {
     );
   }
 
+//navegação entre paginas
   Widget menuItem(int id, String title, IconData icon, bool selected) {
     return Material(
       color: selected ? Colors.grey[300] : Colors.transparent,
@@ -94,7 +100,7 @@ class _MenuState extends State<Menu> {
           Navigator.pop(context);
           setState(() {
             if (id == 1) {
-              currentPage = DrawerSections.dashboard;
+              currentPage = DrawerSections.home;
             } else if (id == 2) {
               currentPage = DrawerSections.contacts;
             } else if (id == 3) {
@@ -142,7 +148,7 @@ class _MenuState extends State<Menu> {
 }
 
 enum DrawerSections {
-  dashboard,
+  home,
   contacts,
   events,
   notes,

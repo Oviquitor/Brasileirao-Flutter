@@ -1,9 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:teste/inicio.dart';
-import 'package:teste/introducao.dart';
-import 'package:teste/menu.dart';
+import 'package:teste/brasileirao/home_page.dart';
+import 'package:teste/teste/inicio.dart';
+import 'package:teste/teste/introducao.dart';
+import 'package:teste/teste/menu.dart';
 
 void main() {
   runApp(const MyApp());
@@ -155,7 +156,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 //}
                 Navigator.of(context).pushReplacement(
                   MaterialPageRoute(
-                    builder: (context) => Menu3(),
+                    builder: (context) => homePage(),
                   ),
                 );
               },
